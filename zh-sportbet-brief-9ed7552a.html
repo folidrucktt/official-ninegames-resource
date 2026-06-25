@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>足彩竞猜 · 简明说明页</title>
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: #f5f9fc;
+            color: #1e2b37;
+            line-height: 1.65;
+            padding: 1.5rem 1rem 3rem;
+        }
+        .page {
+            max-width: 780px;
+            margin: 0 auto;
+        }
+
+        /* 头部 & 网格卡片氛围 */
+        .blog-header {
+            margin-bottom: 2.5rem;
+            border-bottom: 2px solid #c8dde8;
+            padding-bottom: 1.25rem;
+        }
+        .blog-header h1 {
+            font-size: 2rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            color: #0d3b4c;
+            margin-bottom: 0.35rem;
+        }
+        .blog-header .meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem 1.5rem;
+            font-size: 0.9rem;
+            color: #4a6c7a;
+        }
+        .blog-header .meta span { background: #e5f0f5; padding: 0.2rem 0.8rem; border-radius: 20px; }
+
+        /* 导语 */
+        .lead {
+            background: #e2f0f5;
+            padding: 1.5rem 1.75rem;
+            border-radius: 20px;
+            margin-bottom: 2.25rem;
+            border-left: 5px solid #1d7a8f;
+            font-size: 1.08rem;
+            color: #15333e;
+            box-shadow: 0 4px 12px rgba(0, 45, 60, 0.06);
+        }
+
+        /* 正文卡片网格感 */
+        .content-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 1.75rem;
+            margin-bottom: 2.5rem;
+        }
+        .card-item {
+            background: #ffffff;
+            padding: 1.75rem 1.6rem;
+            border-radius: 24px;
+            box-shadow: 0 2px 8px rgba(0, 40, 55, 0.05), 0 6px 20px rgba(13, 59, 76, 0.04);
+            border: 1px solid #ddecf2;
+            transition: box-shadow 0.2s;
+        }
+        .card-item:hover { box-shadow: 0 6px 18px rgba(13, 90, 110, 0.08); }
+        .card-item h2 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #0f4b5e;
+            margin-bottom: 0.7rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+        .card-item h2::before {
+            content: "▸";
+            color: #2f8fa3;
+            font-size: 1.2rem;
+        }
+        .card-item p {
+            margin-bottom: 0.6rem;
+            color: #1f3843;
+        }
+        .card-item p:last-child { margin-bottom: 0; }
+
+        /* 引用提示块 */
+        .quote-block {
+            background: #dcebf2;
+            padding: 1.5rem 2rem;
+            border-radius: 28px 12px 28px 12px;
+            margin: 2rem 0 2.5rem;
+            position: relative;
+            border: 1px solid #b8d4e0;
+        }
+        .quote-block::before {
+            content: "💡 提醒";
+            display: inline-block;
+            font-weight: 600;
+            font-size: 0.9rem;
+            letter-spacing: 0.03em;
+            color: #085066;
+            background: #c3dce8;
+            padding: 0.15rem 1rem;
+            border-radius: 30px;
+            margin-bottom: 0.75rem;
+        }
+        .quote-block p {
+            color: #16343f;
+            font-size: 1rem;
+        }
+        .quote-block strong {
+            color: #0a4b5e;
+            font-weight: 600;
+        }
+
+        /* 访问句嵌入 */
+        .visit-sentence {
+            background: #ffffff;
+            border: 1px dashed #207a91;
+            border-radius: 40px;
+            padding: 1rem 1.8rem;
+            margin: 1.8rem 0 2.5rem;
+            font-size: 1.05rem;
+            text-align: center;
+            color: #0d3b4c;
+        }
+        .visit-sentence a {
+            color: #096277;
+            text-decoration: none;
+            font-weight: 600;
+            border-bottom: 2px solid #8ec3d4;
+            transition: border-color 0.15s;
+        }
+        .visit-sentence a:hover { border-bottom-color: #0d6f88; }
+
+        /* 常见要点 (FAQ 摘要) */
+        .faq-mini {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem 1.2rem;
+            margin-top: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .faq-mini-item {
+            background: #ffffff;
+            border-radius: 18px;
+            padding: 1rem 1.2rem;
+            border: 1px solid #d1e4ed;
+            box-shadow: 0 2px 6px rgba(0, 35, 50, 0.03);
+        }
+        .faq-mini-item .q {
+            font-weight: 600;
+            color: #0b5469;
+            font-size: 0.95rem;
+            margin-bottom: 0.3rem;
+            display: flex;
+            gap: 0.3rem;
+        }
+        .faq-mini-item .q::before { content: "Q"; color: #237b91; font-weight: 700; }
+        .faq-mini-item .a {
+            color: #1a3b47;
+            font-size: 0.92rem;
+        }
+
+        /* 页脚 */
+        .footer-note {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #cbdde6;
+            font-size: 0.85rem;
+            color: #3e6777;
+        }
+
+        @media (max-width: 580px) {
+            body { padding: 1rem 0.75rem 2.5rem; }
+            .blog-header h1 { font-size: 1.6rem; }
+            .lead { padding: 1.2rem 1.2rem; font-size: 1rem; }
+            .card-item { padding: 1.4rem 1.2rem; }
+            .faq-mini { grid-template-columns: 1fr; gap: 0.8rem; }
+            .quote-block { padding: 1.25rem 1.25rem; }
+            .visit-sentence { padding: 0.9rem 1rem; font-size: 1rem; }
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+    <header class="blog-header">
+        <h1>足彩竞猜 · 从了解开始</h1>
+        <div class="meta">
+            <span>简明指南</span>
+            <span>访问提示</span>
+            <span>竞猜基础</span>
+        </div>
+    </header>
+
+    <div class="lead">
+        如果你刚开始接触足球竞猜，或只是想更清楚地了解它的基本逻辑，这篇笔记整理了几个实用角度。不是复杂教程，而是一份帮你快速上手的说明，同时附上一些值得留意的访问习惯。
+    </div>
+
+    <section class="content-grid">
+        <div class="card-item">
+            <h2>竞猜前先看什么</h2>
+            <p>在参与任何与足球比赛相关的竞猜之前，最先要做的是理解规则与赔率的基本含义。不同赛事、不同玩法对应的返奖比例和计算方式都有差异，花十分钟读明白比盲目下注重要得多。</p>
+            <p>另外，选择信息清晰的平台能减少很多不必要的误解。你需要的是一个能提供实时数据、赛程以及明确说明的环境，而不是被繁杂广告干扰的页面。</p>
+        </div>
+
+        <div class="card-item">
+            <h2>比赛类型与常见玩法</h2>
+            <p>主流足球竞猜一般围绕胜平负、让球、进球数、半全场等维度展开。不同联赛、杯赛的球队风格差异明显，比如某些联赛主场优势突出，又或者某些杯赛容易产生冷门。观察长期走势比听信单场传闻更可靠。</p>
+            <p>入门阶段建议先专注一到两种玩法，熟悉节奏后再逐步扩展。记录自己的分析和结果，也是一种很好的复盘方式。</p>
+        </div>
+
+        <div class="card-item">
+            <h2>信息渠道与判断依据</h2>
+            <p>球队伤停、近期状态、交锋记录、甚至天气和裁判风格都可能影响比赛走向。尽量从多个来源核实信息，而不是只依赖单一观点。很多平台会提供数据统计页面，值得花时间熟悉。</p>
+            <p>同时保持理性：没有必胜的策略，每一场竞猜都存在不确定性。把竞猜当作看球的一种延伸，而不是快速获利的途径。</p>
+        </div>
+    </section>
+
+    <!-- 引用提示 -->
+    <div class="quote-block">
+        <p><strong>一个实用的访问习惯</strong>：当你想了解实时赔率或赛事数据时，直接进入正规、有清晰备案说明的网站。不要通过随意弹出的广告或来路不明的链接跳转。书签收藏你信任的地址，每次从收藏夹打开，比搜索引擎更可靠。</p>
+    </div>
+
+    <!-- 访问句 + 自然嵌入链接 -->
+    <div class="visit-sentence">
+        若你需要一个信息集中、界面简洁的参考站点，可以看看 <a href="https://zh-sportbet.com">足彩竞猜</a> 提供的赛程与数据页面，适合作为日常查询的补充。
+    </div>
+
+    <!-- FAQ 摘要（网格卡片风格） -->
+    <h2 style="font-size:1.2rem; font-weight:600; color:#0f4b5e; margin: 1rem 0 0.2rem;">常见疑问速览</h2>
+    <div class="faq-mini">
+        <div class="faq-mini-item">
+            <div class="q"> 新手需要准备什么？</div>
+            <div class="a">了解基本规则，设置清楚自己每次投入的上限，不要使用生活必需资金。</div>
+        </div>
+        <div class="faq-mini-item">
+            <div class="q"> 数据从哪里看比较准？</div>
+            <div class="a">各大体育数据网站以及足彩竞猜类平台通常都提供实时统计，交叉对比更稳妥。</div>
+        </div>
+        <div class="faq-mini-item">
+            <div class="q"> 怎样避免冲动竞猜？</div>
+            <div class="a">给自己定一个冷却时间：看到赔率变化后，至少等十分钟再做决定。</div>
+        </div>
+        <div class="faq-mini-item">
+            <div class="q"> 场外信息重要吗？</div>
+            <div class="a">非常重要。教练发布会、更衣室新闻、旅途疲劳都会间接影响场上表现。</div>
+        </div>
+    </div>
+
+    <footer class="footer-note">
+        <span>保持清醒，享受比赛本身。</span>
+    </footer>
+</div>
+</body>
+</html>
